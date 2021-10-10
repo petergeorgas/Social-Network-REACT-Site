@@ -1,38 +1,183 @@
-.App {
+:root {
+  --main: #344b88;
+  --text: #4b5563;
+  --border: #ddd;
+  --grey: #c4c4c4;
+  --issueBackground: #ffb8a3;
+  --issueHover: #f6a288;
+  --issueBorder: #e95564;
+  --issueText: #e95564;
+  --fill: #9fa6b2;
+  --link: #345fd6;
+}
+
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: #3e1953;
+  background: linear-gradient(165deg, #1a2238, #344b88 40%, #345fd6);
+  z-index: -1;
+}
+
+.invalidFormField {
+  outline: 2px solid var(--issueBorder);
+}
+
+.invalidField {
+  color: var(--issueText);
+  margin: 0;
+}
+
+.subBtn {
+  display: block;
+  background-color: var(--link);
+  color: #fff;
+  padding: 12px;
+  border-radius: 6px;
+  box-sizing: border-box;
   text-align: center;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  margin: 24px 0 0;
+  font-family: inherit;
+  font-size: inherit;
+  -webkit-appearance: none;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.subBtn:hover {
+  background-color: var(--main);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.formField {
+  display: block;
+  padding: 12px;
+  border-radius: 6px;
+  box-sizing: border-box;
+  text-align: left;
+  width: 100%;
+  border: 2px solid lightgray;
+  cursor: text;
+  margin: 24px 0 0;
+  font-family: inherit;
+  font-size: inherit;
 }
 
-.App-header {
-  background-color: #282c34;
+.formDropdown {
+  cursor: pointer;
+}
+
+.rememberLine {
+  display: block;
+  padding: 0px;
+  border-radius: 6px;
+  box-sizing: border-box;
+  text-align: left;
+  width: 100%;
+  border: none;
+  margin: 12px 0 0;
+  font-family: inherit;
+  font-size: inherit;
+  -webkit-appearance: none;
+}
+
+#rememberMeLbl {
+  float: left;
+  cursor: pointer;
+}
+
+#rememberMeLbl::selection,
+#rememberMeLbl::-moz-selection {
+  background: transparent;
+}
+
+#rememberMe {
+  float: left;
+  cursor: pointer;
+}
+
+#signUp {
+  font-style: italic;
+  float: left;
+  margin-left: 20px;
+  margin-top: 0;
+  cursor: default;
+}
+
+#signUp::selection,
+#signUp::-moz-selection {
+  background: transparent;
+}
+
+.centerBlockOuter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 0 auto;
+  margin: 0 18px;
+}
+
+.flex-item-left {
+  margin-right: 5px;
+}
+
+.flex-item-right {
+  margin-left: 5px;
+}
+
+.flex-container {
+  display: flex;
+  flex-flow: row;
+}
+
+select {
+  cursor: pointer;
+  display: block;
+}
+
+.sgnUpLink {
+  color: var(--link);
+}
+
+.sgnUpLink:hover {
+  color: var(--main);
+  cursor: pointer;
+}
+
+.sgnUpLink::selection,
+.sgnUpLink::-moz-selection {
+  background: transparent;
+}
+
+.centerBlockInner {
+  width: 650px;
+  margin: 24px 0 0;
+}
+
+.App {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media screen and (max-width: 480px) {
+  .flex-container {
+    display: flex;
+    flex-flow: column;
   }
-  to {
-    transform: rotate(360deg);
+
+  .flex-item-left {
+    margin-right: 0;
+  }
+
+  .flex-item-right {
+    margin-left: 0;
   }
 }
