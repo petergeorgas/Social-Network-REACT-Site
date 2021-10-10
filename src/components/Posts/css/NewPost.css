@@ -1,0 +1,38 @@
+.postBtn {
+  display: block;
+  background-color: var(--link);
+  color: #fff;
+  padding: 5px 30px;
+  border-radius: 6px;
+  box-sizing: border-box;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  margin: 24px 0 0;
+  font-family: inherit;
+  font-size: inherit;
+  -webkit-appearance: none;
+}
+
+.postBtn:hover {
+  background-color: var(--main);
+}
+.newPostField {
+  height: 80px !important;
+}
+
+.flex-container {
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.leftItem {
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+.rightItem {
+  margin-left: auto;
+  margin-top: 10px;
+}

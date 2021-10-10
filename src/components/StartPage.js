@@ -88,8 +88,15 @@ export class StartPage extends Component {
       .post("http://localhost:3000/api/auth/login", user)
       .then((res) => {
         if (mounted) {
-          if (res.status === 200) {
+          if (res && res.status === 200) {
             localStorage.setItem("user", JSON.stringify(res.data));
+
+            if (this.state.checked) {
+              localStorage.setItem("tokenPersist", true);
+            } else {
+              localStorage.setItem("tokenPersist", false);
+            }
+
             this.props.update();
             this.setState({ redirect: true });
           } else {
@@ -108,10 +115,10 @@ export class StartPage extends Component {
 
   handleChange(event) {
     const target = event.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
+    const value =
+      target.type === "checkbox" ? target.checked : target.value.trim();
     const name = target.name;
 
-    console.log(value);
     this.setState({
       [name]: value,
     });

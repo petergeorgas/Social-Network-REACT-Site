@@ -46,6 +46,11 @@
   -webkit-appearance: none;
 }
 
+.newPostField {
+  height: 110px;
+  padding: 0;
+}
+
 .subBtn:hover {
   background-color: var(--main);
 }

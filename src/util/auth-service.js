@@ -10,7 +10,8 @@ const getAuthHeader = () => {
   const user = JSON.parse(localStorage.getItem("user")); // Retrieve the User object stored in the Browser's local storage...
 
   if (user && user.token) {
-    return { Authorization: user.token }; // Retrun the proper header
+    console.log(user.token);
+    return { "authorization": user.token }; // Retrun the proper header
   } else {
     return {}; // Return nothing.
   }
@@ -23,11 +24,15 @@ const isLoggedIn = () => {
 };
 
 const logout = () => {
-  localStorage.removeItem("user");
+  localStorage.clear();
 };
 
 const getCurrentUser = () => {
   return JSON.parse(localStorage.getItem("user"));
+};
+
+const getTokenPersistence = () => {
+  return localStorage.getItem("tokenPersist");
 };
 
 export default {
@@ -36,4 +41,5 @@ export default {
   logout,
   isLoggedIn,
   getCurrentUser,
+  getTokenPersistence,
 };
