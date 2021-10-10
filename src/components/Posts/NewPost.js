@@ -17,11 +17,12 @@ export class NewPost extends Component {
   getInitialState() {
     return {
       postText: "",
+      invalid: false,
+      errorText: "",
     };
   }
 
   addPost() {
-    console.log("AddPost!!");
     const user = authService.getCurrentUser();
     if (user) {
       const id = user.user_entry._id;
@@ -31,7 +32,6 @@ export class NewPost extends Component {
         content: this.state.postText,
       };
 
-      console.log(authService.getAuthHeader());
       if (this.state.postText.length > 0) {
         axios
           .post("http://localhost:3000/api/posts", body, {
@@ -39,16 +39,36 @@ export class NewPost extends Component {
           })
           .then((res) => {
             if (res && res.status === 200) {
-              console.log("Post successfully added!");
-
               this.setState({
                 postText: "",
+                invalid: false,
+                errorText: "",
               });
+              console.log("Post successfully added!");
             }
           })
           .catch((err) => {
-            console.log(err);
+            const res = err.response;
+
+            if (res && res.data && res.data.name === "TokenExpiredError") {
+              console.log(res);
+              this.setState({
+                invalid: true,
+                errorText: "Your JWT has expired. Please login again.",
+              });
+            } else {
+              console.log(err);
+              this.setState({
+                invalid: true,
+                errorText: "There was an issue posting your message.",
+              });
+            }
           });
+      } else {
+        this.setState({
+          invalid: true,
+          errorText: "You cannot post an empty message!",
+        });
       }
     }
   }
@@ -65,6 +85,12 @@ export class NewPost extends Component {
     return (
       <ContentBlock>
         <h3>New Post</h3>
+        <p
+          className="invalidField"
+          style={{ display: this.state.invalid ? "" : "" }}
+        >
+          {this.state.errorText}
+        </p>
         <textarea
           id="newPost"
           name="newPost"
